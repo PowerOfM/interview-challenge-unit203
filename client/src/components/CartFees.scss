@@ -1,0 +1,20 @@
+@import '../assets/colors';
+
+.fees {
+  margin-left: 2rem;
+
+  .row {
+    display: flex;
+    margin-bottom: 1rem;
+
+    :nth-child(1) {
+      flex: 1;
+    }
+
+    &.bold {
+      font-family: 'LarsseitBold';
+      color: $blue;
+    }
+  }
+
+}

@@ -1,0 +1,7 @@
+{
+  "extends": "react-app",
+  "rules": {
+    "semi": "off",
+    "no-unused-vars": "warn"
+  }
+}

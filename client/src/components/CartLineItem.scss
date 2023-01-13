@@ -1,0 +1,49 @@
+@import '../assets/colors';
+
+.cartLineItem {
+  display: flex;
+  margin-bottom: 3rem;
+
+  img {
+    width: 14rem;
+  }
+
+  .content {
+    flex: 1;
+
+    .heading {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+
+      .title {
+        flex: 1;
+        color: $blue;
+        font-family: "LarsseitBold";
+        font-size: 1.125rem;
+      }
+
+      .price {
+        font-family: "LarsseitBold";
+      }
+    }
+
+    .delivery,
+    .actions {
+      margin-bottom: 1rem;
+      text-align: right;
+    }
+
+    .delivery {
+      font-size: 0.8rem;
+    }
+
+    .actions button {
+      border: none;
+      background: none;
+
+      text-decoration: underline;
+      color: initial;
+    }
+  }
+}

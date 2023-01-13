@@ -1,0 +1,41 @@
+@import 'colors';
+
+@font-face {
+  font-family: "Larsseit";
+  src: url('fonts/Larsseit.otf');
+}
+
+@font-face {
+  font-family: "LarsseitBold";
+  src: url('fonts/Larsseit-Bold.otf');
+}
+
+@font-face {
+  font-family: "CamptonMedium";
+  src: url('fonts/CamptonMedium.otf');
+}
+
+@font-face {
+  font-family: "Quincy";
+  src: url('fonts/quincycf-regular.otf');
+}
+
+:root {
+  font-family: "Larsseit", Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+h1 {
+  font-family: "Quincy";
+  font-size: 2rem;
+  color: $blue;
+  padding-bottom: 1rem;
+}
