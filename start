@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cd server
+npm install
+cd ../client
+npm install
+cd ../
+
+sh -c 'npm start --prefix server/ & npm start --prefix client/ & wait'

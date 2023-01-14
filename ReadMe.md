@@ -17,7 +17,7 @@ The estimated delivery date is hidden until you enter an postal code. When the p
 The project is built with a split client and server architecture. In production, the client would be deployed on a static host (like S3), and the server in a VM (like EC2). Alternatively, the server could be modified to host the compiled client as well. 
 
 ### Quick Start
-If you're on Mac or Linux, use the `start.sh` script to install deps and run the server and client.
+If you're on Mac or Linux, type `./start.sh` in a terminal to install deps and run the server and client. Use Control+C to exit.
 
 ### Manual Start
 On Windows, you'll have to manually install and open the client and server:
@@ -29,3 +29,5 @@ In another terminal or tab
   - `cd client/`
   - `npm install`
   - `npm start`
+
+Once running, CMD+Click on the url or open [`http://localhost:5173/](http://localhost:5173/) in your browser.
