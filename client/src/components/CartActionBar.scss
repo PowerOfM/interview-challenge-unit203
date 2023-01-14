@@ -1,0 +1,28 @@
+@import '../assets/colors';
+
+.cartActionBar {
+  display: flex;
+  background: rgba($blue, 0.25);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin: 0.5rem 0 2rem 0;
+
+  .spacer {
+    flex: 1;
+  }
+
+  form.postalCode {
+    input {
+      padding: 0.5rem;
+      border-top-left-radius: 0.5rem;
+      border-bottom-left-radius: 0.5rem;
+      box-shadow: none;
+      border: none;
+    }
+
+    input+button {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+}

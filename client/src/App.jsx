@@ -4,6 +4,7 @@ import CartFees from "./components/CartFees";
 import './App.scss'
 import { useEffect } from "react";
 import LoadingWrapper from "./components/LoadingWrapper";
+import CartActionBar from "./components/CartActionBar";
 
 //Styling variables (see assets/colors.scss)
 // const BLUE = ""; //"rgb(23, 33, 98)";
@@ -11,7 +12,6 @@ import LoadingWrapper from "./components/LoadingWrapper";
 // const BLACK = "#000000";
 
 const API_URL = 'http://localhost:8180'
-const ESTIMATED_DELIVERY = "Nov 24, 2021";
 const TAX_RATE = 0.13
 const FLAT_SHIPPING = 15
 
@@ -23,7 +23,7 @@ const FLAT_SHIPPING = 15
 function calculateFees(lineItems) {
   const subtotal = lineItems.reduce((acc, val) => acc + val.price, 0)
   const taxes = subtotal * TAX_RATE
-  const shipping = FLAT_SHIPPING
+  const shipping = subtotal ? FLAT_SHIPPING : 0
   return { subtotal, taxes, shipping }
 }
 
@@ -37,7 +37,12 @@ export default function App() {
 
   // Load Cart
   useEffect(() => {
-    fetch(`${API_URL}/cart?postalCode=${postalCode}`)
+    let url = `${API_URL}/cart?postalCode=${postalCode}`
+    // If we already have items, tell the server to respect the cart
+    if (lineItems.length) {
+      url += '&lineItemIds=' + lineItems.map(li => li.id).join(',')
+    }
+    fetch(url)
       .then(res => res.json())
       .then(cart => {
         setLineItems(cart)
@@ -46,11 +51,17 @@ export default function App() {
       .catch(err => {
         setFetchState({ loading: false, error: err })
       })
+    // The lineItems dep is not required
+    /* eslint-disable react-hooks/exhaustive-deps */
   }, [postalCode])
 
   // Remove a line item by its id
-  const removeLineItem = (lineItemId) => {
-    setLineItems(prev => prev.filter(x => x.id == lineItemId))
+  // const removeLineItem = (lineItemId) => {
+  //   setLineItems(prev => prev.filter(x => x.id !== lineItemId))
+  // }
+  // Remove a line item by index
+  const removeLineItemByIndex = (index) => {
+    setLineItems(prev => prev.filter((x, i) => i !== index))
   }
 
   // Request new line item from the server
@@ -67,21 +78,23 @@ export default function App() {
       })
   }
 
-  const fees = calculateFees(lineItems)
-
   return (
     <div className="app">
       <LoadingWrapper fetchState={fetchState}>
         <h1>Your Cart</h1>
-        <button className="addItem" onClick={addLineItem}>Add New Item</button>
+        <CartActionBar
+          postalCode={postalCode}
+          onAddClick={addLineItem}
+          onPostalCodeChange={setPostalCode}
+        />
         {lineItems.map((item, i) => (
           <CartLineItem
             key={i}
             item={item}
-            onRemoveClick={removeLineItem}
+            onRemoveClick={() => removeLineItemByIndex(i)}
           />
         ))}
-        <CartFees fees={fees} />
+        <CartFees fees={calculateFees(lineItems)} />
       </LoadingWrapper>
     </div>
   )

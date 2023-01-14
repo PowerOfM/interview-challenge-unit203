@@ -38,9 +38,10 @@
       font-size: 0.8rem;
     }
 
-    .actions button {
+    .actions button.link {
       border: none;
       background: none;
+      padding: 0.5rem 0;
 
       text-decoration: underline;
       color: initial;

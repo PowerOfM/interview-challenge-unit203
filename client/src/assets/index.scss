@@ -39,3 +39,23 @@ h1 {
   color: $blue;
   padding-bottom: 1rem;
 }
+
+button {
+  color: white;
+  font-family: "CamptonMedium";
+  background: $blue;
+  border: none;
+  box-shadow: none;
+  padding: 0.6rem 1rem 0.5rem;
+  line-height: 1rem;
+  font-size: 1rem;
+  border-radius: 1rem;
+
+  &:hover {
+    background: rgba($blue, 0.75);
+  }
+
+  &:active {
+    background: rgba($blue, 0.95);
+  }
+}

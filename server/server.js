@@ -10,6 +10,10 @@ app.use(cors(true))
 
 app.get('/cart', (req, res) => {
   let cart = DEFAULT_CART
+  if (req.query.lineItemIds) {
+    const ids = req.query.lineItemIds.split(',')
+    cart = ids.map(id => DEFAULT_CART[id - 1])
+  }
   if (req.query.postalCode) {
     const postalCode = req.query.postalCode
     cart = cart.map(item => ({

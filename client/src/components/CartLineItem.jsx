@@ -17,9 +17,9 @@ export default function CartLineItem({ item, onRemoveClick }) {
           <Swatch title={item.swatchTitle} color={item.swatchColor} />
         </div>
 
-        <div className='delivery'>
+        {item.estimatedDeliveryDate && <div className='delivery'>
           Estimated Delivery Date: {item.estimatedDeliveryDate}
-        </div>
+        </div>}
 
         <div className='actions'>
           <button className="link" onClick={() => onRemoveClick(item.id)}>
